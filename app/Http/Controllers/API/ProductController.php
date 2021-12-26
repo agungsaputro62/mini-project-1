@@ -69,7 +69,7 @@ class ProductController extends Controller
 
         // Semoga Berhasil
         return ResponseFormatter::success(
-                    $products = Product::with('galleries')->paginate(8),
+                    $product = Product::with('galleries')->paginate(8),
                     'Data Product Berhasil Diambil'
                 );
     }
