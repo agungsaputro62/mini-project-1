@@ -59,7 +59,17 @@ Route::middleware(['auth:sanctum'])->group(function() {
 
 });
 
+//
 Route::get('/products', 'API\ProductController@all')->name('api-products-all');
+
+//
+Route::get('/categories', 'API\ProductCategoryController@all')->name('api-product-category');
+
+//
+Route::get('/register', 'API\UserController@register')->name('api-user-register');
+
+
+
 
 // Cek Register Yang Sudah Terdaftar
 Route::get('register/check', 'Auth\RegisterController@check')->name('api-register-check');
