@@ -59,6 +59,11 @@
               class="list-group-item list-group-item-action"
               >My Account</a
             >
+            <a
+              href="#"
+              class="list-group-item list-group-item-action"
+              >Sign Out</a
+            >
           </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -101,7 +106,7 @@
                     aria-expanded="false"
                   >
                     <img
-                      src="/images/icon-user.png"
+                      src="/images/avatar_login.png"
                       alt=""
                       class="rounded-circle mr-2 profile-picture"
                     />

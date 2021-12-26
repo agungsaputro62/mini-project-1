@@ -16,17 +16,21 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             /*
             - id => ID Categories
-            - name => Nama Kategori
-            - slug => Url
-            - photo => Gambar Dari Kategori
+
+            - string - name => Nama Category
+            - string - slug => Url
+            - string - photo => Gambar Dari Category
+
             - softDeletes => Menghapus Data, Tapi Tidak Menghapus Dari Database
             - timestamps => Riwayat Upload Kategori - created_at and updated_at
             */
             $table->id();
+            
             $table->string('name');
             $table->string('photo');
             $table->string('slug');
-            $table->sofDeletes();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

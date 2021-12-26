@@ -4,10 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Memanggil Model Product
+use App\Product;
+
+// Memanggil Model Cart
+use App\cart;
+use Illuminate\Support\Facades\Auth;
+
 class DetailController extends Controller
 {
-    //
-    public function index () {
-        return view ('pages.detail');
+    // id Berbentuk String, Berdasarkan Slug
+    public function index (Request $request, $id) {
+
+        // Gambar Milik User Untuk Slug Dengan Berdasarkan ID
+        $product = Product::with('galleries', 'user')->where('slug', $id)->firstOrFail();
+
+        return view ('pages.detail', [
+            'product' => $product
+        ]);
+    }
+
+    public function add (Request $request, $id) {
+        $data = [
+            'products_id' => $id,
+            'users_id' => Auth::user()->id,
+        ];
+
+        Cart::create($data);
+
+        return redirect()->route('cart');
     }
 }

@@ -4,6 +4,9 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+// Sanctrum
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+
 class Kernel extends HttpKernel
 {
     /**
@@ -39,8 +42,9 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            EnsureFrontendRequestsAreStateful::class,
+    'throttle:60,1',
+    \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
@@ -62,5 +66,11 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        // Menambahkan Admin - Jadi Nanti Saat Saya Panggil Di routes/web, Maka Saya Akan Buat,
+        // Tinggal Panggil Aja Middleware Nya Apa
+        // Ini Yang Kita Panggil, Karena Kita Memanggil Class Nya (Ini Cara Bikin Middleware)
+        'admin' => \App\Http\Middleware\IsAdmin::class
+
     ];
 }
