@@ -37,29 +37,29 @@ Route::post('/register', 'Auth\RegisterController@register')->name('api-register
 Route::middleware(['auth:sanctum'])->group(function() {
 
     //
-    Route::get('user', 'API/UserController@fetch')->name('api-fetch');
+//     Route::get('user', 'API/UserController@fetch')->name('api-fetch');
 
-    // Logout
-    Route::post('/logout', 'Auth\RegisterController@logout')->name('api-logout');
+//     // Logout
+//     Route::post('/logout', 'Auth\RegisterController@logout')->name('api-logout');
 
-   // Params - Menampilkan Semua Data Product - Success
-//    Route::get('/products', 'API\ProductController@index')->name('api-product-index');
+//    // Params - Menampilkan Semua Data Product - Success
+// //    Route::get('/products', 'API\ProductController@index')->name('api-product-index');
 
-   // Params - Menampilkan 1 Data Product Yang Ingin Dicari -
-   Route::get('/product/show/{id}', 'API\ProductController@show')->name('api-product-show');
+//    // Params - Menampilkan 1 Data Product Yang Ingin Dicari -
+//    Route::get('/product/show/{id}', 'API\ProductController@show')->name('api-product-show');
 
-    // http://127.0.0.1:8000/product/add => CREATE PRODUCT - Success
-    Route::post('/product/add', 'API\ProductController@store')->name('api-product-add');
+//     // http://127.0.0.1:8000/product/add => CREATE PRODUCT - Success
+//     Route::post('/product/add', 'API\ProductController@store')->name('api-product-add');
 
-    // Cara 2 Menggunakan POST- UPDATE Product -
-    Route::post('/product/update/{id}', 'API\ProductController@update')->name('api-product-update');
+//     // Cara 2 Menggunakan POST- UPDATE Product -
+//     Route::post('/product/update/{id}', 'API\ProductController@update')->name('api-product-update');
 
-    // Delete - DELETE Product -
-    Route::delete('/product/delete/{id}', 'API\ProductController@delete')->name('api-product-delete');
+//     // Delete - DELETE Product -
+//     Route::delete('/product/delete/{id}', 'API\ProductController@delete')->name('api-product-delete');
 
 });
 
-//
+// coba DEPLOY
 Route::get('/products', 'API\ProductController@all')->name('api-products-all');
 
 //
