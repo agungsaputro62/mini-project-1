@@ -67,8 +67,9 @@ class ProductController extends Controller
             $product->where('categories_id', 'categories_id');
         }
 
+        // Semoga Berhasil
         return ResponseFormatter::success(
-                    $product->paginate($limit),
+                    $products = Product::with('galleries')->paginate(8),
                     'Data Product Berhasil Diambil'
                 );
     }
