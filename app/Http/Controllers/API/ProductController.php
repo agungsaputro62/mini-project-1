@@ -69,7 +69,7 @@ class ProductController extends Controller
 
         // Semoga Berhasil
         return ResponseFormatter::success(
-                    $product = Product::with('categories_id')->paginate(8),
+                    $product = Product::with('categories_id')->paginate(),
                     'Data Product Berhasil Diambil'
                 );
     }
