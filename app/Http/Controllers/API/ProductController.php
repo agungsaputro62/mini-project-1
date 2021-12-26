@@ -28,7 +28,7 @@ class ProductController extends Controller
         $slug = $request->input('slug');
 
         if($id) {
-            $product = Product::with(['category'])->find($id);
+            $product = Product::with(['category', 'galleries'])->find($id);
 
             if($product) {
                 return ResponseFormatter::success(
@@ -45,7 +45,7 @@ class ProductController extends Controller
             }
         }
 
-        $product = Product::with(['category']);
+        $product = Product::with(['category', 'galleries']);
 
         if($name) {
             $product->where('name', 'like', '%' . $name . '%');
