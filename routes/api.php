@@ -32,20 +32,18 @@ use App\Http\Controllers\Auth\RegisterController;
 // Register
 // Route::post('/register', 'Auth\RegisterController@register')->name('api-register');
 
-// coba DEPLOY
+// Products - Success
 Route::get('/products', 'API\ProductController@all')->name('api-products-all');
 
-//
+// Category - Success
 Route::get('/categories', 'API\ProductCategoryController@all')->name('api-product-category');
 
-//
+// Register - 
 Route::get('/register', 'API\UserController@register')->name('api-user-register');
 
-//
+// Login -
 Route::post('/login', 'API\UserController@login')->name('api-user-login');
 
-//
-Route::post('/login', 'API\UserController@login')->name('api-user-login');
 
 
 Route::middleware(['auth:sanctum'])->group(function() {
