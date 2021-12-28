@@ -21,7 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         // Roles - Kita Bisa Simpan Di CRUD, Untuk Membuat Data Baru, Karena Bikin Datanya Di Miss Assegment
         // (Jadi Kita Perlu Tidak Nentuin Nama2 Field)
-        'name', 'email', 'password', 'roles', 'store_name', 'categories_id', 'store_status'
+        'name', 'email', 'password', 'roles', 'store_name', 'categories_id', 'store_status', 'phone_number'
     ];
 
     /**

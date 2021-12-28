@@ -38,8 +38,8 @@ Route::get('/products', 'API\ProductController@all')->name('api-products-all');
 // Category - Success
 Route::get('/categories', 'API\ProductCategoryController@all')->name('api-product-category');
 
-// Register - 
-Route::get('/register', 'API\UserController@register')->name('api-user-register');
+// Register -
+Route::post('/register', 'API\UserController@register')->name('api-user-register');
 
 // Login -
 Route::post('/login', 'API\UserController@login')->name('api-user-login');
@@ -50,6 +50,15 @@ Route::middleware(['auth:sanctum'])->group(function() {
 
     // User
     Route::get('/user', 'API\UserController@fetch')->name('api-user-fetch');
+
+    // Edit Profile
+    Route::post('/update/profile', 'API\UserController@updateProfile')->name('api-user-update-profile');
+
+    // Edit Profile
+    Route::post('/logout', 'API\UserController@logout')->name('api-user-logout');
+
+    // Edit Profile
+    Route::get('/transaction', 'API\TransactionController@all')->name('api-transaction');
 
     // User
 //     Route::get('user', 'API/UserController@fetch')->name('api-fetch');

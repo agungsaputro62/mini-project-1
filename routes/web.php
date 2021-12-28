@@ -115,7 +115,6 @@ Route::prefix('admin')
 ->namespace('Admin')
 ->middleware(['auth', 'admin'])
 // Dia Harus Login Terlebih Dahulu Dan Dia Harus Admin
-// ->middleware(['auth', 'admin'])
 // Bisa Menaruh Semuanya Disini
 ->group(function() {
     Route::get('/', 'DashboardController@index')->name('admin-dashboard');

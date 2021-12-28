@@ -24,17 +24,28 @@ use Illuminate\Support\Facades\Auth;
 // V
 use Illuminate\Support\Facades\Hash;
 
+//
+// use Illuminate\Support\Facades\Password;
+
 // V
-use App\Http\Requests\Admin\UserRequest;
+// use App\Http\Requests\Admin\UserRequest;
 
 
 
 class UserController extends Controller
 {
     //
-    public function register (UserRequest $request) {
+    public function register (Request $request) {
 
             try {
+
+                $request->validate([
+                    'name' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'max:255', 'unique:users'],
+                    'phone_number' => ['required', 'string', 'max:255'],
+                    'password' => ['required', 'string'],
+            ]);
+
                 User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -51,15 +62,17 @@ class UserController extends Controller
                 'token_type' => 'Bearer',
                 'user' => $user
             ], 'User Registered');
-        } catch (Exception $error) {
-                return ResponseFormatter::success([
+        }
+        catch (Exception $error) {
+                return ResponseFormatter::error([
                 'message' => 'Something Went Wrong',
                 'error' => $error
             ], 'Authentication Failed', 500);
         }
     }
 
-    public function login (UserRequest $request) {
+    public function login (Request $request) {
+
         try {
             $credentials = request(['email', 'password']);
             if (!Auth::attempt($credentials)) {
@@ -70,7 +83,7 @@ class UserController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            if(!Hash::check($request->password, $user->password, [])) {
+            if(! Hash::check($request->password, $user->password, [])) {
                 throw new \Exception('Invalid Credentials');
             }
 
@@ -90,7 +103,25 @@ class UserController extends Controller
         }
     }
 
-    public function fetch (UserRequest $request) {
+    public function fetch (Request $request) {
         return ResponseFormatter::success($request->user(), 'Data Profile User Berhasil Diambil');
+    }
+
+    public function updateProfile (Request $request) {
+
+        $request['password'] = Hash::make($request['password']);
+
+        $data = $request->all();
+        $user = Auth::user();
+        $user->update($data);
+
+        return ResponseFormatter::success($user, 'Profile Updated');
+    }
+
+    public function logout (Request $request) {
+
+        $token = $request->user()->currentAccessToken()->delete();
+
+        return ResponseFormatter::success($token, 'Token Revoked');
     }
 }

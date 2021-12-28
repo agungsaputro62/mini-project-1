@@ -28,6 +28,8 @@ class UserRequest extends FormRequest
             'name' => 'required|string|max:50',
             // Email Tidak Boleh Sama
             'email' => 'required|email|unique:users',
+            // Password
+            'password' => 'required',
             // Inputan Hanya Antara 2
             'roles' => 'nullable|string|in:ADMIN,USER'
         ];
